@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ActivityTrackerAPI.Data;
 using ActivityTrackerAPI.Models;
-
+using ActivityTrackerAPI.DTOs;
 
 namespace ActivityTrackerAPI.Controllers
 {
@@ -26,7 +26,7 @@ namespace ActivityTrackerAPI.Controllers
                 .Include(a => a.Category) //include categoria
                 .ToListAsync();
 
-            return Ok(activities); //restituisce risposta HTTP 200
+            return Ok(activities); //risposta HTTP 200
         }
 
 
@@ -46,27 +46,37 @@ namespace ActivityTrackerAPI.Controllers
 
         //POST - CREATE
         [HttpPost]
-        public async Task<IActionResult> CreateActivity(Activity activity) //Activity activity riceve dati dal frontend
+        public async Task<IActionResult> CreateActivity(CreateActivityDto dto)
         {
-            _context.Activities.Add(activity); //.Add() aggiunge in memoria
+            var activity = new Activity
+            {
+                Title = dto.Title,
+                Duration = dto.Duration,
+                Date = dto.Date,
+                CategoryId = dto.CategoryId,
+                CreatedAt = DateTime.Now
+            };
 
-            await _context.SaveChangesAsync(); //SaveChangesAsync() salva nel DB
-            return CreatedAtAction(nameof(GetActivities), new { id = activity.Id }, activity);
+            _context.Activities.Add(activity);
+            await _context.SaveChangesAsync();
+
+            return Ok(activity);
         }
 
 
         //PUT - UPDATE
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateActivity(int id, Activity activity)
+        public async Task<IActionResult> UpdateActivity(int id, UpdateActivityDto dto)
         {
-            var existing = await _context.Activities.FindAsync(id); //Recupero l’entità
+            var activity = await _context.Activities.FindAsync(id);
 
-            if (existing == null) { return NotFound(); } //per evitare crash
+            if (activity == null)
+                return NotFound(); //per evitare crash
 
-            existing.Title = activity.Title;
-            existing.Duration = activity.Duration;
-            existing.Date = activity.Date;
-            existing.CategoryId = activity.CategoryId;
+            activity.Title = dto.Title;
+            activity.Duration = dto.Duration;
+            activity.Date = dto.Date;
+            activity.CategoryId = dto.CategoryId;
 
             await _context.SaveChangesAsync();
             return NoContent(); //204

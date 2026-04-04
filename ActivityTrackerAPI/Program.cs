@@ -13,6 +13,16 @@ namespace ActivityTrackerAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular",
+                    policy => policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -29,8 +39,9 @@ namespace ActivityTrackerAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors("AllowAngular");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

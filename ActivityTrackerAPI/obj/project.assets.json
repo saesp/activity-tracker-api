@@ -3911,11 +3911,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\salva\\OneDrive\\Desktop\\Work\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\ActivityTrackerAPI.csproj",
+      "projectUniqueName": "C:\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\ActivityTrackerAPI.csproj",
       "projectName": "ActivityTrackerAPI",
-      "projectPath": "C:\\Users\\salva\\OneDrive\\Desktop\\Work\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\ActivityTrackerAPI.csproj",
+      "projectPath": "C:\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\ActivityTrackerAPI.csproj",
       "packagesPath": "C:\\Users\\salva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\salva\\OneDrive\\Desktop\\Work\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\obj\\",
+      "outputPath": "C:\\PersonalWork\\ActivityTrackerAPI\\ActivityTrackerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\salva\\AppData\\Roaming\\NuGet\\NuGet.Config",

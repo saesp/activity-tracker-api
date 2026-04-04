@@ -17,4 +17,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\PersonalWork\ActivityTrackerAPI\ActivityTrackerAPI\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\PersonalWork\ActivityTrackerAPI\ActivityTrackerAPI\.editorconfig" />
+  </ItemGroup>
+
 </Project>
